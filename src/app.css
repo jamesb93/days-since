@@ -1,0 +1,84 @@
+/* src/app.css */
+
+/* --- Base Layout & Window Centering --- */
+body { margin: 0; padding: 1em; }
+.main-window-container { max-width: 600px; margin: 2em auto; /* Slightly wider default */ }
+
+/* --- Add Item Form Styling --- */
+.add-form fieldset { margin-bottom: 1em; padding-bottom: 10px; }
+
+.add-form .inline-form-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.add-form .inline-form-row input[type="text"] {
+    flex-grow: 1;
+    min-width: 100px; /* Adjusted min-width */
+}
+
+.add-form .inline-form-row input[type="datetime-local"] {
+    flex-shrink: 0;
+    /* Provide a sensible default width */
+    min-width: 180px; /* Might need adjustment based on browser */
+    /* padding: 1px; /* from 98.css */ */
+}
+
+.add-form .inline-form-row button { flex-shrink: 0; }
+
+/* Responsive adjustment for the inline form row */
+@media (max-width: 550px) { /* Adjusted breakpoint */
+    .add-form .inline-form-row {
+       flex-direction: column;
+       align-items: stretch;
+       gap: 8px;
+    }
+    .add-form .inline-form-row input[type="text"],
+    .add-form .inline-form-row input[type="datetime-local"],
+    .add-form .inline-form-row button {
+        width: 100%;
+    }
+}
+
+/* --- Compact Tree-View Item Styling (Minor adjustments possible) --- */
+.tree-view { margin-top: 1em; display: block; }
+.tree-view > li.compact-item {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 10px; padding: 6px 0; /* Slightly more padding */ list-style: none;
+    border-bottom: 1px solid #dfdfdf; position: relative;
+}
+.tree-view > li.compact-item:last-child { border-bottom: none; }
+
+.compact-item > .item-summary-details { flex-grow: 1; min-width: 0; }
+
+.compact-item summary {
+    display: block; word-break: break-word; cursor: pointer;
+    padding-right: 5px; position: relative; line-height: 1.3; /* Adjust line height for duration */
+}
+/* Style the duration part within the summary */
+.compact-item summary .duration {
+    font-weight: bold;
+    color: #000080; /* Dark blue, matching 98.css active title */
+}
+.compact-item summary .event-name {
+    /* Style event name if needed */
+}
+
+
+.compact-item .item-start-date { padding: 5px 0 0 22px; font-size: 0.9em; color: #333; }
+.compact-item .item-start-date p { margin: 0; }
+.compact-item > .item-controls { flex-shrink: 0; white-space: nowrap; padding-top: 1px; }
+.compact-item .item-controls button { margin-left: 4px; }
+.compact-item .item-controls button:first-child { margin-left: 0; }
+
+/* Responsive for list items */
+@media (max-width: 520px) {
+    .tree-view > li.compact-item { flex-direction: column; align-items: stretch; gap: 6px; }
+    .compact-item > .item-controls { align-self: flex-end; padding-top: 0; margin-top: 4px; }
+    .compact-item .item-start-date { padding-left: 5px; }
+}
+
+/* --- General Utility / Overrides --- */
+.window-body > p.empty-list-message { margin-top: 1em; text-align: center; color: grey; }
